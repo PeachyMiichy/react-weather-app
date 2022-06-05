@@ -1,0 +1,36 @@
+.App {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.card {
+  background: linear-gradient(
+    179.4deg,
+    rgba(253, 240, 233, 0.7) 2.2%,
+    rgba(255, 194, 203, 0.7) 96.2%
+  );
+}
+
+.outline {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+body {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+#src-code-sign-off {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.col-sm-6 {
+  padding-bottom: 20px;
+}
+
+.left-card,
+.right-card {
+  background: rgba(255, 255, 255, 0.1);
+}
