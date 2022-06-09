@@ -4,6 +4,7 @@ import axios from "axios";
 import FormattedDate from "./FormattedDate";
 
 export default function CurrWeather() {
+  const [city, setCity] = useState("Singapore");
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
@@ -19,11 +20,34 @@ export default function CurrWeather() {
     });
   }
 
+  function search() {
+    let apikey = "48571143cbf4c6549c7ce57d24d91240";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    //When city is submitted, the final updated city will be sent here
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    //When there is an input, city variable will update
+    setCity(event.target.value);
+  }
+
   if (weatherData.ready) {
     return (
       <div className="container">
-        <form>
-          <input type="text" placeholder="Weather in..." className="search" />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="search"
+            placeholder="Enter a city..."
+            className="form-control"
+            autoFocus="on"
+            onChange={handleCityChange}
+          />
           <button type="button" className="btn btn-search">
             🔍
           </button>
@@ -66,10 +90,7 @@ export default function CurrWeather() {
       </div>
     );
   } else {
-    let city = "France";
-    let apikey = "48571143cbf4c6549c7ce57d24d91240";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-    return;
+    search();
+    return "Loading...";
   }
 }
