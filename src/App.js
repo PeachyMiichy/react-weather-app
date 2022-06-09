@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import "./styles.css";
-import Search from "./search.js";
+import "bootstrap/dist/css/bootstrap.css";
 import Weather from "./Weather.js";
 import Forecast from "./Forecast.js";
 import Footer from "./Footer";
@@ -11,7 +11,6 @@ function App() {
     <div className="App">
       <div class="container">
         <div class="card outline">
-          <Search />
           <Weather />
           <Forecast />
           <Footer />
