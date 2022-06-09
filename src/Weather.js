@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 
 export default function CurrWeather() {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -12,6 +13,7 @@ export default function CurrWeather() {
       temp: response.data.main.temp,
       wind: response.data.wind.speed,
       city: response.data.name,
+      date: new Date(response.data.dt * 1000),
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
     });
@@ -34,12 +36,9 @@ export default function CurrWeather() {
             <div className="card left-card">
               <ul className="weather-forecast">
                 <h1 className="location">{weatherData.city}</h1>
-                <img src="" className="tempIcon" />
                 <li id="day">
-                  <strong>Thursday</strong>
+                  <FormattedDate date={weatherData.date} />
                 </li>
-                <span id="date">16/12/2021</span>
-                <li id="time">10:30AM</li>
               </ul>
             </div>
           </div>
@@ -47,6 +46,7 @@ export default function CurrWeather() {
             <div className="card right-card">
               <div className="card-body">
                 <ul className="weather-forecast">
+                  <img src="" className="tempIcon" />
                   <li className="text-capitalize">{weatherData.description}</li>
                   <li id="currTemp">{Math.round(weatherData.temp)}</li>
                   <span className="unit">
