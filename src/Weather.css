@@ -1,9 +1,9 @@
 div {
   text-align: center;
 }
-.search {
+.input-control {
   margin-bottom: 20px;
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0px 20px 10px;
   font-size: 15px;
   height: 37px;
   width: 60%;

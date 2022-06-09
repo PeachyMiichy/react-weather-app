@@ -44,7 +44,7 @@ export default function CurrWeather() {
           <input
             type="search"
             placeholder="Enter a city..."
-            className="form-control"
+            className="input-control"
             autoFocus="on"
             onChange={handleCityChange}
           />
