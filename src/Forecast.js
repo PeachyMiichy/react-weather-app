@@ -3,7 +3,7 @@ import "./Forecast.css";
 
 export default function Forecast() {
   return (
-    <div clasName="row">
+    <div className="row">
       <span className="card forecast-card">
         <div className="col forecast-col">
           <strong>Day</strong>

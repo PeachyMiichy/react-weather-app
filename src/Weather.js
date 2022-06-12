@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
+import WeatherIcon from "./WeatherIcon";
 
 export default function CurrWeather() {
   const [city, setCity] = useState("Singapore");
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
-    console.log("Ok");
     setWeatherData({
       ready: true,
       temp: response.data.main.temp,
@@ -16,6 +16,7 @@ export default function CurrWeather() {
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
       humidity: response.data.main.humidity,
+      iconUrl: response.data.weather[0].icon,
       description: response.data.weather[0].description,
     });
   }
@@ -63,6 +64,7 @@ export default function CurrWeather() {
                 <li id="day">
                   <FormattedDate date={weatherData.date} />
                 </li>
+                <WeatherIcon code={weatherData.iconUrl} />
               </ul>
             </div>
           </div>
@@ -70,8 +72,6 @@ export default function CurrWeather() {
             <div className="card right-card">
               <div className="card-body">
                 <ul className="weather-forecast">
-                  <img src="" className="tempIcon" />
-                  <li className="text-capitalize">{weatherData.description}</li>
                   <li id="currTemp">{Math.round(weatherData.temp)}</li>
                   <span className="unit">
                     <a id="cel">°C</a> |<a id="fah">°F</a>

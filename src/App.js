@@ -9,8 +9,8 @@ import Footer from "./Footer";
 function App() {
   return (
     <div className="App">
-      <div class="container">
-        <div class="card outline">
+      <div className="container">
+        <div className="card outline">
           <Weather />
           <Forecast />
           <Footer />
