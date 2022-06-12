@@ -3,6 +3,7 @@ import "./Weather.css";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
+import TempUnit from "./TempUnit";
 
 export default function CurrWeather() {
   const [city, setCity] = useState("Singapore");
@@ -72,10 +73,7 @@ export default function CurrWeather() {
             <div className="card right-card">
               <div className="card-body">
                 <ul className="weather-forecast">
-                  <li id="currTemp">{Math.round(weatherData.temp)}</li>
-                  <span className="unit">
-                    <a id="cel">°C</a> |<a id="fah">°F</a>
-                  </span>
+                  <TempUnit celsius={weatherData.temp} />
                   <li>
                     Humidity: <span id="humidity">{weatherData.humidity}</span>%
                   </li>

@@ -43,26 +43,9 @@ ul {
   margin-bottom: 0;
 }
 
-.unit {
-  position: relative;
-  font-size: 16px;
-  top: -44px;
-}
-
-#cel:hover,
-#fah:hover {
-  cursor: pointer;
-  color: blue;
-}
-
 #day,
 #date,
 #time {
   font-size: 25px;
   margin-bottom: 0;
-}
-
-#currTemp {
-  display: inline;
-  font-size: 80px;
 }
