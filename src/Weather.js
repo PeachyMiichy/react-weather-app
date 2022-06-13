@@ -43,25 +43,30 @@ export default function CurrWeather() {
     return (
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <input
-            type="search"
-            placeholder="Enter a city..."
-            className="input-control"
-            autoFocus="on"
-            onChange={handleCityChange}
-          />
-          <button type="button" className="btn btn-search">
-            🔍
-          </button>
-          <button type="button" className="btn btn-my-location">
-            🧭
-          </button>
+          <div className="row">
+            <div className="col-9">
+              <input
+                type="search"
+                placeholder="Enter a city.."
+                className="form-control"
+                autoFocus="on"
+                onChange={handleCityChange}
+              />
+            </div>
+            <div className="col-3">
+              <input
+                type="submit"
+                value="Search"
+                className="btn btn-primary w-100"
+              />
+            </div>
+          </div>
         </form>
-        <div className="row">
-          <div className="col-sm-6">
-            <div className="card left-card">
+        <div className="card-deck">
+          <div className="card">
+            <div className="card-text">
               <ul className="weather-forecast">
-                <h1 className="location">{weatherData.city}</h1>
+                <li className="location">{weatherData.city}</li>
                 <li id="day">
                   <FormattedDate date={weatherData.date} />
                 </li>
@@ -69,19 +74,17 @@ export default function CurrWeather() {
               </ul>
             </div>
           </div>
-          <div className="col-sm-6">
-            <div className="card right-card">
-              <div className="card-body">
-                <ul className="weather-forecast">
-                  <TempUnit celsius={weatherData.temp} />
-                  <li>
-                    Humidity: <span id="humidity">{weatherData.humidity}</span>%
-                  </li>
-                  <li>
-                    Wind: <span id="wind">{weatherData.wind}</span>km/hr
-                  </li>
-                </ul>
-              </div>
+          <div className="card">
+            <div className="card-text">
+              <ul className="weather-forecast">
+                <TempUnit celsius={weatherData.temp} />
+                <li>
+                  Humidity: <span id="humidity">{weatherData.humidity}</span>%
+                </li>
+                <li>
+                  Wind: <span id="wind">{weatherData.wind}</span>km/hr
+                </li>
+              </ul>
             </div>
           </div>
         </div>
