@@ -5,7 +5,7 @@ export default function Footer() {
     <p id="src-code-sign-off">
       <a href="https://github.com/PeachyMiichy/MV-Weather-App" target="_blank">
         Open Source Code
-      </a>
+      </a>{" "}
       by Michelle Vong
     </p>
   );
