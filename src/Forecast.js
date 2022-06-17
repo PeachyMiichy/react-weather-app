@@ -1,82 +1,39 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import "./Forecast.css";
-import WeatherIcon from "./WeatherIcon";
 
-export default function Forecast() {
+import WeatherForecastDay from "./WeatherForecastDay";
+
+export default function Forecast(props) {
+  let [loaded, setLoaded] = useState(false);
+  let [forecast, setForecast] = useState(null);
   function handleResponse(response) {
-    console.log(response.data);
+    setForecast(response.data.daily);
+    setLoaded(true);
   }
 
-  let apikey = "48571143cbf4c6549c7ce57d24d91240";
-  let lat = 40.7;
-  let lon = 74;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apikey}`;
+  if (loaded) {
+    console.log(forecast);
+    return (
+      <div className="row">
+        <div className="col">
+          <WeatherForecastDay data={forecast[0]} />
+        </div>
+        <div className="col"></div>
+        <div className="col"></div>
 
-  axios.get(apiUrl).then(handleResponse);
+        <div className="col"></div>
+        <div className="col"></div>
+      </div>
+    );
+  } else {
+    let apikey = "48571143cbf4c6549c7ce57d24d91240";
+    let lat = props.coordinates.lat;
+    let lon = props.coordinates.lon;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`;
 
-  return (
-    <div className="row">
-      <div className="col">
-        <div className="card h-100">
-          <div className="Forecast-day">Day</div>
-          <div className="Forecast-icon" size={20}>
-            <WeatherIcon code="01d" />
-          </div>
-          <div className="Forecast-temp">
-            <span className="max-temp">30°</span>
-            <span className="min-temp">20° </span>
-          </div>
-        </div>
-      </div>
-      <div className="col">
-        <div className="card h-100">
-          <div className="Forecast-day">Day</div>
-          <div className="Forecast-icon" size={20}>
-            <WeatherIcon code="01d" />
-          </div>
-          <div className="Forecast-temp">
-            <span className="max-temp">30°</span>
-            <span className="min-temp">20° </span>
-          </div>
-        </div>
-      </div>
-      <div className="col">
-        <div className="card h-100">
-          <div className="Forecast-day">Day</div>
-          <div className="Forecast-icon" size={20}>
-            <WeatherIcon code="01d" />
-          </div>
-          <div className="Forecast-temp">
-            <span className="max-temp">30°</span>
-            <span className="min-temp">20° </span>
-          </div>
-        </div>
-      </div>
-      <div className="col">
-        <div className="card h-100">
-          <div className="Forecast-day">Day</div>
-          <div className="Forecast-icon" size={20}>
-            <WeatherIcon code="01d" />
-          </div>
-          <div className="Forecast-temp">
-            <span className="max-temp">30°</span>
-            <span className="min-temp">20° </span>
-          </div>
-        </div>
-      </div>
-      <div className="col">
-        <div className="card h-100">
-          <div className="Forecast-day">Day</div>
-          <div className="Forecast-icon" size={20}>
-            <WeatherIcon code="01d" />
-          </div>
-          <div className="Forecast-temp">
-            <span className="max-temp">30°</span>
-            <span className="min-temp">20° </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    axios.get(apiUrl).then(handleResponse);
+
+    return null;
+  }
 }

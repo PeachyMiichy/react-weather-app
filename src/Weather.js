@@ -4,6 +4,7 @@ import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
 import TempUnit from "./TempUnit";
+import Forecast from "./Forecast.js";
 
 export default function CurrWeather() {
   const [city, setCity] = useState("Singapore");
@@ -12,6 +13,7 @@ export default function CurrWeather() {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
+      coordinates: response.data.coord,
       temp: response.data.main.temp,
       wind: response.data.wind.speed,
       city: response.data.name,
@@ -88,6 +90,7 @@ export default function CurrWeather() {
             </div>
           </div>
         </div>
+        <Forecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
