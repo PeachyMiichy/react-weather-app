@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Forecast.css";
 
 import WeatherForecastDay from "./WeatherForecastDay";
@@ -16,14 +16,15 @@ export default function Forecast(props) {
     console.log(forecast);
     return (
       <div className="row">
-        <div className="col">
-          <WeatherForecastDay data={forecast[0]} />
-        </div>
-        <div className="col"></div>
-        <div className="col"></div>
-
-        <div className="col"></div>
-        <div className="col"></div>
+        {forecast.map(function (dailyForecast, index) {
+          if (index > 0 && index < 6) {
+            return (
+              <div className="col" key={index}>
+                <WeatherForecastDay data={dailyForecast} />
+              </div>
+            );
+          }
+        })}
       </div>
     );
   } else {
