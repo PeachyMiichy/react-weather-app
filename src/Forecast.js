@@ -17,7 +17,6 @@ export default function Forecast(props) {
   }, [props.coordinates]);
 
   if (loaded) {
-    console.log(forecast);
     return (
       <div className="row">
         {forecast.map(function (dailyForecast, index) {
@@ -27,6 +26,8 @@ export default function Forecast(props) {
                 <WeatherForecastDay data={dailyForecast} />
               </div>
             );
+          } else {
+            return null;
           }
         })}
       </div>
