@@ -3,7 +3,6 @@ import WeatherIcon from "./WeatherIcon";
 import "./WeatherForecastDay.css";
 
 export default function WeatherForecastDay(props) {
-  console.log(props);
   function day() {
     let date = new Date(props.data.dt * 1000);
     let day = date.getDay();
