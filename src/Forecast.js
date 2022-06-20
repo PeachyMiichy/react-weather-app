@@ -12,6 +12,10 @@ export default function Forecast(props) {
     setLoaded(true);
   }
 
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
+
   if (loaded) {
     console.log(forecast);
     return (
